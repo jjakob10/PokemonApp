@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.VisualizePokemonActivity">
+
+    <TextView
+        android:id="@+id/text_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/return_button_text"
+        android:textColor="@color/md_theme_primary"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toEndOf="@+id/image_back"
+        app:layout_constraintTop_toTopOf="@+id/image_back" />
+
+    <ImageView
+        android:id="@+id/image_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/md_theme_primary" />
+
+    <ImageView
+        android:id="@+id/pokemon_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_pokemon_placeholder"
+        android:contentDescription="@string/image_from_url"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_back"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <TextView
+        android:id="@+id/vizualize_pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pokemon_name"
+        android:textColor="@color/md_theme_primary"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pokemon_image"
+        app:layout_constraintBottom_toTopOf="@id/text_pokemon_hp"
+       />
+
+    <ImageView
+        android:id="@+id/favorite_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/pokemon_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@id/pokemon_image"
+        app:layout_constraintTop_toTopOf="@+id/pokemon_image"
+        app:layout_constraintVertical_bias="0.0"
+        app:tint="@color/md_theme_onSurface" />
+
+    <!-- HP -->
+    <TextView
+        android:id="@+id/text_pokemon_hp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/hp_red"
+        android:paddingHorizontal="10dp"
+        android:text="@string/hp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vizualize_pokemon_name" />
+
+    <TextView
+        android:id="@+id/text_pokemon_hp_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/hp_red"
+        android:paddingHorizontal="10dp"
+        android:text="78"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_hp"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_hp"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_hp" />
+
+    <View
+        android:id="@+id/view_pokemon_hp_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/hp_red"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_hp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_hp_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_hp" />
+
+    <ProgressBar
+        android:id="@+id/hp_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/hp_red"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_hp_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_hp_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_hp_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_hp_percentage" />
+
+    <!-- Attack -->
+    <TextView
+        android:id="@+id/text_pokemon_attack"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/attack_orange"
+        android:paddingHorizontal="10dp"
+        android:text="@string/attack"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_hp" />
+
+    <TextView
+        android:id="@+id/text_pokemon_attack_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/attack_orange"
+        android:paddingHorizontal="10dp"
+        android:text="84"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_attack"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_hp" />
+
+    <View
+        android:id="@+id/view_pokemon_attack_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/attack_orange"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_attack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_attack_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_attack" />
+
+    <ProgressBar
+        android:id="@+id/attack_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/attack_orange"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_attack_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_attack_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_attack_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_attack_percentage" />
+
+    <!-- Defense -->
+    <TextView
+        android:id="@+id/text_pokemon_defense"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/defense_yellow"
+        android:paddingHorizontal="10dp"
+        android:text="@string/defense"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_attack" />
+
+    <TextView
+        android:id="@+id/text_pokemon_defense_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/defense_yellow"
+        android:paddingHorizontal="10dp"
+        android:text="78"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_defense"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_attack" />
+
+    <View
+        android:id="@+id/view_pokemon_defense_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/defense_yellow"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_defense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_defense_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_defense" />
+
+    <ProgressBar
+        android:id="@+id/defense_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/defense_yellow"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_defense_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_defense_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_defense_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_defense_percentage" />
+
+    <!-- Special Attack -->
+    <TextView
+        android:id="@+id/text_pokemon_special_attack"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/special_attack_blue"
+        android:paddingHorizontal="10dp"
+        android:text="@string/special_attack"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_defense" />
+
+    <TextView
+        android:id="@+id/text_pokemon_special_attack_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/special_attack_blue"
+        android:paddingHorizontal="10dp"
+        android:text="109"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_special_attack"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_defense" />
+
+    <View
+        android:id="@+id/view_pokemon_special_attack_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/special_attack_blue"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_special_attack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_special_attack_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_special_attack" />
+
+    <ProgressBar
+        android:id="@+id/special_attack_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/special_attack_blue"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_special_attack_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_special_attack_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_special_attack_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_special_attack_percentage" />
+
+    <!-- Special Defense -->
+    <TextView
+        android:id="@+id/text_pokemon_special_defense"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/special_defense_green"
+        android:paddingHorizontal="10dp"
+        android:text="@string/special_defense"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_special_attack" />
+
+    <TextView
+        android:id="@+id/text_pokemon_special_defense_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/special_defense_green"
+        android:paddingHorizontal="10dp"
+        android:text="85"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_special_defense"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_special_attack" />
+
+    <View
+        android:id="@+id/view_pokemon_special_defense_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/special_defense_green"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_special_defense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_special_defense_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_special_defense" />
+
+    <ProgressBar
+        android:id="@+id/special_defense_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/special_defense_green"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_special_defense_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_special_defense_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_special_defense_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_special_defense_percentage" />
+
+    <!-- Speed -->
+    <TextView
+        android:id="@+id/text_pokemon_speed"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@color/speed_pink"
+        android:paddingHorizontal="10dp"
+        android:text="@string/speed"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_special_defense" />
+
+    <TextView
+        android:id="@+id/text_pokemon_speed_answer"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@color/speed_pink"
+        android:paddingHorizontal="10dp"
+        android:text="100"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_speed"
+        app:layout_constraintTop_toBottomOf="@id/text_pokemon_special_defense" />
+
+    <View
+        android:id="@+id/view_pokemon_speed_percentage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/speed_pink"
+        app:layout_constraintBottom_toBottomOf="@id/text_pokemon_speed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_pokemon_speed_answer"
+        app:layout_constraintTop_toTopOf="@id/text_pokemon_speed" />
+
+    <ProgressBar
+        android:id="@+id/speed_progress"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:progress="25"
+        android:progressBackgroundTint="@color/speed_pink"
+        app:layout_constraintBottom_toBottomOf="@id/view_pokemon_speed_percentage"
+        app:layout_constraintEnd_toEndOf="@id/view_pokemon_speed_percentage"
+        app:layout_constraintStart_toStartOf="@id/view_pokemon_speed_percentage"
+        app:layout_constraintTop_toTopOf="@id/view_pokemon_speed_percentage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

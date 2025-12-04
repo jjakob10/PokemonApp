@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">PokemonApp</string>
+    <string name="pokemon_name_hint">Nome do Pokemon</string>
+    <string name="search_button">Pesquisar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="return_button_text">Retornar</string>
+    <string name="image_from_url">Imagem do pokemon</string>
+    <string name="hp">PS:</string>
+    <string name="attack">Ataque:</string>
+    <string name="defense">Defesa:</string>
+    <string name="special_attack">Atq. Es.:</string>
+    <string name="special_defense">Def. Es.:</string>
+    <string name="speed">Velocidade:</string>
+    <string name="pokemon_name">Nome do pokemon</string>
+    <string name="valid_name">Digite um nome válido de pokemon</string>
+    <string name="success_search">Pokemon encontrado!</string>
+    <string name="fail_seach">Pokemon não encontrado\n</string>
+</resources>
