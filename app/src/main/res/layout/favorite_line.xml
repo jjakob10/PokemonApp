@@ -3,52 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
 
     <ImageView
-        android:id="@+id/image_pokemon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/image_pokemon_fav_line"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/ic_pokemon_placeholder"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/md_theme_primary" />
+        />
 
     <TextView
-        android:id="@+id/pokemon_name"
+        android:id="@+id/pokemon_name_fav_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pokemon_name"
         android:textColor="@color/md_theme_primary"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_pokemon_fav_line"
+        app:layout_constraintEnd_toStartOf="@+id/image_fav_fav_line"
+        app:layout_constraintStart_toEndOf="@+id/image_pokemon_fav_line"
+        app:layout_constraintTop_toTopOf="@+id/image_pokemon_fav_line" />
 
     <ImageView
-        android:id="@+id/image_fav"
+        android:id="@+id/image_fav_fav_line"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/ic_favorite"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/image_pokemon_fav_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.927"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/md_theme_primary" />
+        app:layout_constraintTop_toTopOf="@+id/image_pokemon_fav_line"
+        app:tint="@color/hp_red" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/view_fav_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/md_theme_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="86dp" />
+        app:layout_constraintTop_toBottomOf="@+id/image_pokemon_fav_line"
+        android:layout_marginTop="8dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

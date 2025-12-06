@@ -3,8 +3,10 @@ package com.example.pokemonapp.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
@@ -29,6 +31,7 @@ class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
 
             setObserver()
             binding.imageBack.setOnClickListener(this)
+            binding.favoriteIcon.setOnClickListener(this)
 
             val pokemon = intent.getSerializableExtra("pokemon") as PokemonEntity
             visualizeVM.fillContent(pokemon)
@@ -46,6 +49,25 @@ class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
             }
         })
 
+        visualizeVM.getPokemonMale().observe(this, Observer {
+            if(it){
+                binding.maleIcon.setBackgroundColor(ContextCompat.getColor(this, R.color.male_blue))
+                binding.maleIcon.setColorFilter(ContextCompat.getColor(this, R.color.md_theme_background))
+            }
+
+        })
+
+        visualizeVM.getPokemonFemale().observe(this, Observer {
+            if(it){
+                binding.femaleIcon.setBackgroundColor(ContextCompat.getColor(this, R.color.female_pink))
+                binding.femaleIcon.setColorFilter(ContextCompat.getColor(this, R.color.md_theme_background))
+            }
+
+        })
+
+        visualizeVM.getPokemonAbilities().observe(this, Observer {
+            binding.visualizeAbilities.text =  "$it"
+        })
         visualizeVM.getPokemonName().observe(this, Observer {
             binding.vizualizePokemonName.text =  "$it"
         })
@@ -79,6 +101,14 @@ class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
             binding.speedProgress.progress = it.toInt() * 100 / 255
         })
 
+        visualizeVM.getPokemonFavorite().observe(this, Observer {
+          if(it){
+              binding.favoriteIcon.setColorFilter(ContextCompat.getColor(this, R.color.hp_red))
+          }
+          else{
+              binding.favoriteIcon.setColorFilter(ContextCompat.getColor(this, R.color.md_theme_onSecondaryContainer))
+          }
+        })
 
 
 
@@ -87,6 +117,15 @@ class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
     override fun onClick(view: View) {
         if (view.id == R.id.image_back) {
             finish()
+        }
+        else if(view.id == R.id.favorite_icon){
+            if(!visualizeVM.pokemonFavorite.value!!){
+                Toast.makeText(this, R.string.add_favorite, Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, R.string.delete_sucess, Toast.LENGTH_SHORT).show()
+            }
+            visualizeVM.toggleFavorite()
+
         }
     }
 }

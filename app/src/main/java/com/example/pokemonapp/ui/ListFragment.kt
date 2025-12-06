@@ -1,60 +1,94 @@
 package com.example.pokemonapp.ui
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pokemonapp.R
+import com.example.pokemonapp.databinding.FragmentListBinding
+import com.example.pokemonapp.repository.data.model.PokemonModel
+import com.example.pokemonapp.ui.adapter.ListAdapter
+import com.example.pokemonapp.ui.listener.OnPokemonListener
+import com.example.pokemonapp.utils.Constants
+import com.example.pokemonapp.viewModel.ListViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ListFragment : Fragment(R.layout.fragment_search), View.OnClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var listVM: ListViewModel
+    private var _binding: FragmentListBinding? = null
+    private val adapter = ListAdapter()
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+
+        // layout
+        binding.recyclerListGrid.layoutManager = GridLayoutManager(context, 3)
+
+        // Adapter
+        binding.recyclerListGrid.adapter = adapter
+
+
+        listVM = ViewModelProvider(this).get(ListViewModel::class.java)
+
+        val listener = object : OnPokemonListener {
+            override fun onClick(p: PokemonModel) {
+
+//                val intent = Intent(context, VisualizePokemonActivity::class.java)
+//
+//                val bundle = bundleOf(
+//                    "pokemon" to p
+//                )
+//
+//                intent.putExtras(bundle)
+//                startActivity(intent)
+
+            }
+        }
+        adapter.setListener(listener)
+
+        binding.buttonLoadMore.setOnClickListener(this)
+        setObserver()
+        listVM.loadMore()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.buttonLoadMore -> {
+                listVM.loadMore()
             }
+        }
     }
+    fun setObserver() {
+        listVM.getListMsg().observe(viewLifecycleOwner, Observer {
+            if (it == Constants.MSGS.SUCCESS){
+                Toast.makeText(context, R.string.load_sucess, Toast.LENGTH_SHORT).show()
+            } else if (it == Constants.MSGS.FAIL){
+                Toast.makeText(context, R.string.load_fail, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        listVM.getPokemonList().observe(viewLifecycleOwner, Observer {
+            adapter.updatePokemonList(it)
+        })
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

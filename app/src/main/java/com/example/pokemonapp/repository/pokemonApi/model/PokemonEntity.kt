@@ -23,7 +23,7 @@ class Sprites : Serializable {
     var front_default: String = ""
 
     @SerializedName("front_female")
-    var back_default: String = ""
+    var front_female: String = ""
 }
 
 class AbilityItem : Serializable {

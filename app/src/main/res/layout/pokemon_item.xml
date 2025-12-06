@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+
+    <ImageView
+        android:id="@+id/image_pokemon_list_line"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_pokemon_placeholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/pokemon_name_list_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pokemon_name"
+        android:textColor="@color/md_theme_primary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@+id/image_pokemon_list_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_pokemon_list_line" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

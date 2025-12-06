@@ -16,4 +16,13 @@
     <string name="valid_name">Digite um nome válido de pokemon</string>
     <string name="success_search">Pokemon encontrado!</string>
     <string name="fail_seach">Pokemon não encontrado\n</string>
+    <string name="favorite_list_frag">Meus favoritos</string>
+    <string name="not_found">Pokemons não encontrados</string>
+    <string name="delete_fail">Falha ao remover pokemon favorito</string>
+    <string name="delete_sucess">Pokemon removido com sucesso</string>
+    <string name="add_favorite">Pokemon adicionado aos favoritos!</string>
+    <string name="favorite_found">Pokemons favoritos carregados!</string>
+    <string name="load_sucess">Mais pokemons encontrados!</string>
+    <string name="load_fail">Falha ao carregar mais pokemons!</string>
+    <string name="list_frag">Lista de pokemons</string>
 </resources>
