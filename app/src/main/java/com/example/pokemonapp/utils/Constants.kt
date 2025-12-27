@@ -20,7 +20,8 @@ class Constants {
         val USER_COLISION = 3
         val NETWORK_ERROR = 4
         val FAIL = 5
-
+        val INVALID_USER = 6
+        val WRONG_PASSWORD = 7
 
     }
 }

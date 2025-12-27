@@ -45,4 +45,7 @@
     <string name="user_collision">Este e-mail já foi cadastrado</string>
     <string name="network_error">Falha de conexão com a internet</string>
     <string name="register_fail">Houve algum problema no cadastro</string>
+    <string name="login_fail">Houve algum problema no login, tente novamente</string>
+    <string name="invalid_user">Este usuário não existe</string>
+    <string name="wrong_password">O usuário existe mas a senha está incorreta</string>
 </resources>
