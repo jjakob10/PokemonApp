@@ -25,4 +25,24 @@
     <string name="load_sucess">Mais pokemons encontrados!</string>
     <string name="load_fail">Falha ao carregar mais pokemons!</string>
     <string name="list_frag">Lista de pokemons</string>
+
+    <string name="hint_email">email@email.com</string>
+    <string name="button_login">Login</string>
+    <string name="hint_password">**********</string>
+    <string name="register">Cadastro</string>
+    <string name="name">Nome</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="confirm_password">Confirme a senha</string>
+    <string name="button_register">Cadastrar</string>
+    <string name="not_registered">Não registrado? Clique aqui</string>
+    <string name="valid_login">Nome ou senha inválido</string>
+    <string name="valid_register">Nome, E-mail ou senha inválidos</string>
+    <string name="password_not_match">Conformação da senha não corresponde à senha original</string>
+    <string name="back_button_description">Back button</string>
+    <string name="weak_password">Digite uma senha com no mínimo 6 caracteres</string>
+    <string name="invalid_credentials">Digite um email válido</string>
+    <string name="user_collision">Este e-mail já foi cadastrado</string>
+    <string name="network_error">Falha de conexão com a internet</string>
+    <string name="register_fail">Houve algum problema no cadastro</string>
 </resources>

@@ -76,9 +76,12 @@ class ListViewModel  (application: Application) : AndroidViewModel(application){
                             specialDefense = pokemon.stats[4].base_stat
                             speed = pokemon.stats[5].base_stat
                         }
-                        val newList = pokemonList.value?.toMutableList()
-                        newList?.add(pm)
-                        pokemonList.value = newList
+                        val currentList = pokemonList.value
+                        if (currentList != null) {
+                            val newList = currentList.toMutableList()
+                            newList.add(pm)
+                            pokemonList.value = newList
+                        }
 
                     }else{
                         listMsg.value = Constants.MSGS.FAIL

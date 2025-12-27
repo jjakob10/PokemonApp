@@ -12,4 +12,15 @@ class Constants {
         val DELETE_FAIL = 5
 
     }
+
+    object FIREBASE {
+        val SUCCESS = 1
+        val INVALID_CREDENTIAL = 0
+        val WEAK_PASSWORD = 2
+        val USER_COLISION = 3
+        val NETWORK_ERROR = 4
+        val FAIL = 5
+
+
+    }
 }
