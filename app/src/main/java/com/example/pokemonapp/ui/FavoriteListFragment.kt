@@ -1,5 +1,6 @@
 package com.example.pokemonapp.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.example.pokemonapp.ui.listener.OnPokemonListener
 import com.example.pokemonapp.utils.Constants
 import com.example.pokemonapp.viewModel.FavoriteListViewModel
 import com.example.pokemonapp.viewModel.SearchViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class FavoriteListFragment : Fragment(R.layout.fragment_search) {
 
@@ -68,7 +70,22 @@ class FavoriteListFragment : Fragment(R.layout.fragment_search) {
             }else if(it == Constants.MSGS.DELETE_FAIL){
                 Toast.makeText(context, R.string.delete_fail, Toast.LENGTH_SHORT).show()
             }else if(it == Constants.MSGS.DELETE_SUCCESS){
-                Toast.makeText(context, R.string.delete_sucess, Toast.LENGTH_SHORT).show()
+                val snack = Snackbar.make(binding.recyclerListFavorites, R.string.delete_sucess, Snackbar.LENGTH_SHORT)
+                snack.setBackgroundTint(Color.DKGRAY)
+                snack.setTextColor(Color.WHITE)
+                snack.setTextMaxLines(1)
+
+                snack.setAction(R.string.undo, View.OnClickListener {
+                    favoriteListVM.cancelDelete()
+//                    Snackbar.make(binding.mainLayout, "Acionar ação de desfazer", Snackbar.LENGTH_SHORT).show()
+                })
+
+                snack.show()
+
+            }else if(it == Constants.MSGS.DELETE_CANCEL){
+                Toast.makeText(context, R.string.delete_cancel, Toast.LENGTH_SHORT).show()
+            }else if(it == Constants.MSGS.DELETE_CANCEL_FAIL){
+                Toast.makeText(context, R.string.delete_cancel_fail, Toast.LENGTH_SHORT).show()
             }
         })
 

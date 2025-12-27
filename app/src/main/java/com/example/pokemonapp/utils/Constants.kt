@@ -11,6 +11,10 @@ class Constants {
         val DELETE_SUCCESS = 4
         val DELETE_FAIL = 5
 
+        val DELETE_CANCEL = 6
+        val DELETE_CANCEL_FAIL = 7
+
+
     }
 
     object FIREBASE {

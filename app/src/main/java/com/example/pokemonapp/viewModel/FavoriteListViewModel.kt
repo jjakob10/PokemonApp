@@ -10,6 +10,7 @@ import com.example.pokemonapp.utils.Constants
 
 class FavoriteListViewModel  (application: Application) : AndroidViewModel(application){
 
+    var deletedPokemon: PokemonModel? = null
     private var pokemonList = MutableLiveData<List<PokemonModel>>()
     val listMsg = MutableLiveData<Int>()
 
@@ -21,10 +22,25 @@ class FavoriteListViewModel  (application: Application) : AndroidViewModel(appli
         return listMsg
     }
 
+    fun cancelDelete(){
+        val db = AppDatabase.getDatabase(getApplication()).PokemonDAO()
+
+        if(deletedPokemon!=null){
+            try {
+                db.insert(deletedPokemon!!)
+                val resp = db.getAll()
+                pokemonList.value = resp
+                listMsg.value = Constants.MSGS.DELETE_CANCEL
+            } catch (e: Exception) {
+                listMsg.value = Constants.MSGS.DELETE_CANCEL_FAIL
+            }
+        }
+    }
     fun delete(p: PokemonModel) {
         val db = AppDatabase.getDatabase(getApplication()).PokemonDAO()
         try {
             db.delete(p)
+            deletedPokemon = p
             val resp = db.getAll()
             pokemonList.value = resp
             listMsg.value = Constants.MSGS.DELETE_SUCCESS

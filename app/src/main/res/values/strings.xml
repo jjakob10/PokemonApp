@@ -48,4 +48,7 @@
     <string name="login_fail">Houve algum problema no login, tente novamente</string>
     <string name="invalid_user">Este usuário não existe</string>
     <string name="wrong_password">O usuário existe mas a senha está incorreta</string>
+    <string name="delete_cancel">Pokemon favorito recuperado!</string>
+    <string name="delete_cancel_fail">Não foi possível recuperar pokemon favorito</string>
+    <string name="undo">Desfazer</string>
 </resources>
