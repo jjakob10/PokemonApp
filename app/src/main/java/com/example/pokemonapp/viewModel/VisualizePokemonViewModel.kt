@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pokemonapp.repository.data.model.PokemonModel
 import com.example.pokemonapp.repository.data.room.AppDatabase
+import com.example.pokemonapp.repository.mapper.toPokemonModel
 import com.example.pokemonapp.repository.pokemonApi.model.PokemonEntity
 import java.util.Locale
-import java.util.Locale.getDefault
 
 class VisualizePokemonViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -121,32 +121,14 @@ class VisualizePokemonViewModel(application: Application) : AndroidViewModel(app
 
     fun fillContent(pokemon: PokemonEntity) {
 
-        searchByName(pokemon.name.lowercase(getDefault()))
+        searchByName(pokemon.name.lowercase(Locale.getDefault()))
 
-        if(pokemonFavorite.value == false) {
-            pokemonModel = PokemonModel().apply {
-                name = pokemon.name.lowercase(getDefault())
-                maleImageUrl = pokemon.sprites.front_default  ?: ""
-                femaleImageUrl = pokemon.sprites.front_female ?: ""
-
-                // Abilities (3 fixos)
-                ability1 = pokemon.abilities.getOrNull(0)?.ability?.name ?: ""
-                ability2 = pokemon.abilities.getOrNull(1)?.ability?.name ?: ""
-                ability3 = pokemon.abilities.getOrNull(2)?.ability?.name ?: ""
-
-                // Stats (6 fixos)
-                hp = pokemon.stats[0].base_stat
-                attack = pokemon.stats[1].base_stat
-                defense = pokemon.stats[2].base_stat
-                specialAttack = pokemon.stats[3].base_stat
-                specialDefense = pokemon.stats[4].base_stat
-                speed = pokemon.stats[5].base_stat
-            }
-
+        if (pokemonFavorite.value == false) {
+            pokemonModel = toPokemonModel(pokemon)
         }
 
 
-        val img = if(pokemonModel.maleImageUrl != "") pokemonModel.maleImageUrl else pokemonModel.femaleImageUrl
+        val img = if (pokemonModel.maleImageUrl != "") pokemonModel.maleImageUrl else pokemonModel.femaleImageUrl
 
         pokemonMale.value = pokemonModel.maleImageUrl != ""
         pokemonFemale.value = pokemonModel.femaleImageUrl != ""
@@ -159,13 +141,13 @@ class VisualizePokemonViewModel(application: Application) : AndroidViewModel(app
 
         pokemonAbilities.value = abilities
         pokemonImage.value = img
-        pokemonName.value = pokemon.name
-        pokemonHp.value = pokemon.stats[0].base_stat
-        pokemonAttack.value = pokemon.stats[1].base_stat
-        pokemonDefense.value = pokemon.stats[2].base_stat
-        pokemonSpecialAttack.value = pokemon.stats[3].base_stat
-        pokemonSpecialDefense.value = pokemon.stats[4].base_stat
-        pokemonSpeed.value = pokemon.stats[5].base_stat
+        pokemonName.value = pokemonModel.name
+        pokemonHp.value = pokemonModel.hp
+        pokemonAttack.value = pokemonModel.attack
+        pokemonDefense.value = pokemonModel.defense
+        pokemonSpecialAttack.value = pokemonModel.specialAttack
+        pokemonSpecialDefense.value = pokemonModel.specialDefense
+        pokemonSpeed.value = pokemonModel.speed
 
     }
 }
