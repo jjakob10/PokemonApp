@@ -1,7 +1,9 @@
 package com.example.pokemonapp.ui
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +47,20 @@ class FavoriteListFragment : Fragment(R.layout.fragment_search) {
 
         val listener = object : OnPokemonListener {
             override fun onClick(p: PokemonModel) {
-                favoriteListVM.delete(p)
+
+                AlertDialog.Builder(context)
+                    .setTitle("Remover pokemon favorito")
+                    .setMessage("Tem certeza que deseja remover ${p.name} dos favoritos?")
+                    .setPositiveButton("Sim", { dialog, bt ->
+                        favoriteListVM.delete(p)
+                    })
+                    .setNegativeButton("Não", { dialog, bt ->
+                    })
+                    .create()
+                    .show()
+
+
+
 
             }
         }

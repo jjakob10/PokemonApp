@@ -1,5 +1,6 @@
 package com.example.pokemonapp.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -16,6 +17,7 @@ import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.ActivityVisualizePokemonBinding
 import com.example.pokemonapp.repository.pokemonApi.model.PokemonEntity
 import com.example.pokemonapp.viewModel.VisualizePokemonViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
 
@@ -120,12 +122,42 @@ class VisualizePokemonActivity : AppCompatActivity()  , View.OnClickListener {
         }
         else if(view.id == R.id.favorite_icon){
             if(!visualizeVM.pokemonFavorite.value!!){
-                Toast.makeText(this, R.string.add_favorite, Toast.LENGTH_SHORT).show()
+                val snack = Snackbar.make(binding.visualizeView, R.string.add_favorite, Snackbar.LENGTH_SHORT)
+                snack.setBackgroundTint(Color.DKGRAY)
+                snack.setTextColor(Color.WHITE)
+                snack.setTextMaxLines(1)
+
+                snack.setAction(R.string.undo, View.OnClickListener {
+                    visualizeVM.toggleFavorite()
+                    makeSnack(R.string.delete_sucess)
+                })
+
+                snack.show()
+
             }else{
-                Toast.makeText(this, R.string.delete_sucess, Toast.LENGTH_SHORT).show()
+                val snack = Snackbar.make(binding.visualizeView, R.string.delete_sucess, Snackbar.LENGTH_SHORT)
+                snack.setBackgroundTint(Color.DKGRAY)
+                snack.setTextColor(Color.WHITE)
+                snack.setTextMaxLines(1)
+
+                snack.setAction(R.string.undo, View.OnClickListener {
+                    visualizeVM.toggleFavorite()
+                    makeSnack(R.string.delete_cancel)
+                })
+
+                snack.show()
             }
             visualizeVM.toggleFavorite()
 
         }
+
+    }
+
+    private fun makeSnack(msg: Int){
+        val snack = Snackbar.make(binding.visualizeView, msg, Snackbar.LENGTH_SHORT)
+        snack.setBackgroundTint(Color.DKGRAY)
+        snack.setTextColor(Color.WHITE)
+        snack.setTextMaxLines(1)
+        snack.show()
     }
 }
