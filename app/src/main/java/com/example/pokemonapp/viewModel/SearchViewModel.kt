@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.pokemonapp.repository.data.model.PokemonModel
+import com.example.pokemonapp.repository.mapper.toPokemonModel
 import com.example.pokemonapp.repository.pokemonApi.client.ClientRetrofit
 import com.example.pokemonapp.repository.pokemonApi.model.PokemonEntity
 import com.example.pokemonapp.repository.pokemonApi.service.PokemonService
@@ -18,13 +20,13 @@ class SearchViewModel (application: Application) : AndroidViewModel(application)
 
     var failDetails = ""
 
-    val pokemon = MutableLiveData<PokemonEntity>()
+    val pokemon = MutableLiveData<PokemonModel>()
 
     fun getResponseMsg(): LiveData<Int> {
         return responseMsg
     }
 
-    fun getPokemon(): LiveData<PokemonEntity> {
+    fun getPokemon(): LiveData<PokemonModel> {
         return pokemon
     }
 
@@ -43,7 +45,9 @@ class SearchViewModel (application: Application) : AndroidViewModel(application)
 
                 if (response.isSuccessful) {
                     responseMsg.value = Constants.MSGS.SUCCESS
-                    pokemon.value = response.body()
+                    response.body()?.let {
+                        pokemon.value = toPokemonModel(it)
+                    }
                 }else{
                     responseMsg.value = Constants.MSGS.NOT_FOUND
                 }

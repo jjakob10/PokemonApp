@@ -51,4 +51,8 @@
     <string name="delete_cancel">Pokemon favorito recuperado!</string>
     <string name="delete_cancel_fail">Não foi possível recuperar pokemon favorito</string>
     <string name="undo">Desfazer</string>
+
+    <string name="pokemon_added_to_favorites">Pokemon adicionado aos favoritos!</string>
+    <string name="pokemon_removed_from_favorites">Pokemon removido dos favoritos.</string>
+    <string name="error_updating_favorites">Erro atualizando favoritos.</string>
 </resources>
