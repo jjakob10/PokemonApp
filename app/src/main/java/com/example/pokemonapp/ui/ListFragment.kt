@@ -46,14 +46,14 @@ class ListFragment : Fragment(R.layout.fragment_search), View.OnClickListener {
         val listener = object : OnPokemonListener {
             override fun onClick(p: PokemonModel) {
 
-//                val intent = Intent(context, VisualizePokemonActivity::class.java)
-//
-//                val bundle = bundleOf(
-//                    "pokemon" to p
-//                )
-//
-//                intent.putExtras(bundle)
-//                startActivity(intent)
+                val intent = Intent(context, VisualizePokemonActivity::class.java)
+
+                val bundle = bundleOf(
+                    "pokemon" to p
+                )
+
+                intent.putExtras(bundle)
+                startActivity(intent)
 
             }
         }
