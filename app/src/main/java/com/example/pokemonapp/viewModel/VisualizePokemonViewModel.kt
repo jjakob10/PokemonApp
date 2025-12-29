@@ -121,7 +121,7 @@ class VisualizePokemonViewModel(application: Application) : AndroidViewModel(app
     fun fillContent(pokemon: PokemonModel) {
         searchByName(pokemon.name.lowercase(Locale.getDefault()))
         pokemonModel = pokemon
-        val img = if (pokemonModel.maleImageUrl.isNotEmpty()) pokemonModel.maleImageUrl else pokemonModel.femaleImageUrl
+        val img = pokemonModel.maleImageUrl.ifEmpty { pokemonModel.femaleImageUrl }
         pokemonMale.value = pokemonModel.maleImageUrl.isNotEmpty()
         pokemonFemale.value = pokemonModel.femaleImageUrl.isNotEmpty()
         val abilities = listOfNotNull(
