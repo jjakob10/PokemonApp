@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         loginVM = ViewModelProvider(this).get(LoginViewModel::class.java)
+        loginVM.checkUserIsLoggedIn()
         setObserver()
 
         binding.buttonLogin.setOnClickListener(this)
@@ -40,6 +41,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             binding.editPassword.setText("")
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         })
 
         loginVM.getErrorMsg().observe(this, Observer {

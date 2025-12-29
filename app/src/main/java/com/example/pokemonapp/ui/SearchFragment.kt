@@ -13,8 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.FragmentSearchBinding
+import com.example.pokemonapp.ui.LoginActivity
 import com.example.pokemonapp.utils.Constants
-import com.example.pokemonapp.viewModel.MainViewModel
 import com.example.pokemonapp.viewModel.SearchViewModel
 
 
@@ -38,6 +38,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), View.OnClickListener 
 
 
         binding.buttonPesquisar.setOnClickListener(this)
+        binding.buttonLogout.setOnClickListener(this)
 
 
 
@@ -54,6 +55,9 @@ class SearchFragment : Fragment(R.layout.fragment_search), View.OnClickListener 
                 } else {
                     searchVM.search(binding.EditTextPokemonName.text.toString())
                 }
+            }
+            R.id.buttonLogout -> {
+                searchVM.logout()
             }
         }
     }
@@ -87,6 +91,11 @@ class SearchFragment : Fragment(R.layout.fragment_search), View.OnClickListener 
 
             intent.putExtras(bundle)
             startActivity(intent)
+        })
+
+        searchVM.logout.observe(viewLifecycleOwner, Observer {
+            startActivity(Intent(context, LoginActivity::class.java))
+            requireActivity().finish()
         })
     }
 

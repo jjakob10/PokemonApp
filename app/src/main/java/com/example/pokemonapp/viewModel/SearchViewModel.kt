@@ -10,6 +10,7 @@ import com.example.pokemonapp.repository.pokemonApi.client.ClientRetrofit
 import com.example.pokemonapp.repository.pokemonApi.model.PokemonEntity
 import com.example.pokemonapp.repository.pokemonApi.service.PokemonService
 import com.example.pokemonapp.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +22,9 @@ class SearchViewModel (application: Application) : AndroidViewModel(application)
     var failDetails = ""
 
     val pokemon = MutableLiveData<PokemonModel>()
+
+    private val _logout = MutableLiveData<Boolean>()
+    val logout: LiveData<Boolean> = _logout
 
     fun getResponseMsg(): LiveData<Int> {
         return responseMsg
@@ -60,10 +64,10 @@ class SearchViewModel (application: Application) : AndroidViewModel(application)
                 responseMsg.value = Constants.MSGS.FAIL
             }
         })
-
-
-
     }
 
-
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        _logout.value = true
+    }
 }

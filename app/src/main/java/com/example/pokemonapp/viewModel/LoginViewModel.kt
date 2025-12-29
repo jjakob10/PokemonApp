@@ -24,6 +24,12 @@ class LoginViewModel  (application: Application) : AndroidViewModel(application)
         return errorMsg
     }
 
+    fun checkUserIsLoggedIn() {
+        if (auth.currentUser != null) {
+            login.postValue(true)
+        }
+    }
+
     fun login(email: String, pass: String) {
 
         auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener({
